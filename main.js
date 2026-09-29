@@ -21,7 +21,7 @@
   if (year) year.textContent = new Date().getFullYear();
 
   var revealTargets = document.querySelectorAll(
-    ".section, .card, .project, .contact-card"
+    ".section, .card, .project, .contact-card, .stats, .fiverr-card"
   );
   revealTargets.forEach(function (el) { el.classList.add("reveal"); });
 

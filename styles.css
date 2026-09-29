@@ -109,6 +109,23 @@ a { color: inherit; text-decoration: none; }
 .float-label { display: block; font-size: 0.68rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
 .float-value { font-weight: 600; font-size: 0.9rem; }
 
+/* STATS BAND */
+.stats-band { max-width: var(--maxw); margin: 0 auto; padding: 8px 24px 0; }
+.stats {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: var(--card-brd); border: 1px solid var(--card-brd);
+  border-radius: var(--radius); overflow: hidden;
+}
+.stat {
+  display: flex; flex-direction: column; gap: 6px; align-items: center;
+  padding: 26px 16px; background: var(--bg-soft); text-align: center;
+}
+.stat-num {
+  font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; letter-spacing: -0.03em;
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.stat-label { color: var(--muted); font-size: 0.82rem; }
+
 /* SECTIONS */
 .section { max-width: var(--maxw); margin: 0 auto; padding: 84px 24px; }
 .section-title {
@@ -165,6 +182,47 @@ a { color: inherit; text-decoration: none; }
 .tags { list-style: none; display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
 .tags li { font-size: 0.75rem; color: var(--muted); background: rgba(255,255,255,.05); padding: 4px 10px; border-radius: 8px; }
 
+.more { margin-top: 34px; text-align: center; }
+
+/* FIVERR */
+.fiverr-card {
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px;
+  background: linear-gradient(135deg, rgba(255,90,95,.10), rgba(34,211,166,.07));
+  border: 1px solid rgba(255,90,95,.28); border-radius: 26px; padding: 46px;
+}
+.fiverr-head { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.fiverr-badge {
+  font-size: 0.74rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em;
+  color: #0b1220; background: linear-gradient(100deg, #ffb347, #ff5a5f);
+  padding: 6px 13px; border-radius: 999px;
+}
+.fiverr-stars { color: #ffc34d; font-weight: 700; font-size: 0.95rem; }
+.fiverr-card h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.03em; }
+.fiverr-card p { color: var(--muted); margin-top: 12px; max-width: 60ch; }
+.fiverr-card p strong { color: var(--text); }
+.fiverr-services {
+  list-style: none; display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 10px 18px; margin-top: 22px;
+}
+.fiverr-services li {
+  position: relative; padding-left: 22px; color: var(--muted); font-size: 0.9rem;
+}
+.fiverr-services li::before {
+  content: "✓"; position: absolute; left: 0; top: 0; color: var(--accent-2); font-weight: 700;
+}
+.fiverr-side { display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+.fiverr-cta {
+  display: flex; flex-direction: column; gap: 14px; align-items: stretch;
+  background: rgba(13,18,32,.6); border: 1px solid var(--card-brd);
+  border-radius: 18px; padding: 24px; text-align: center;
+}
+.fiverr-price { color: var(--muted); font-size: 0.9rem; }
+.fiverr-price strong { color: var(--text); font-size: 1.4rem; display: block; margin-top: 4px; }
+.fiverr-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--card-brd); border: 1px solid var(--card-brd); border-radius: 14px; overflow: hidden; }
+.fiverr-meta > div { background: var(--bg-soft); padding: 13px 16px; display: flex; flex-direction: column; gap: 3px; }
+.fiverr-meta span { color: var(--muted); font-size: 0.74rem; text-transform: uppercase; letter-spacing: .08em; }
+.fiverr-meta strong { font-size: 0.95rem; }
+
 /* CONTACT */
 .contact-card {
   display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
@@ -196,6 +254,8 @@ a { color: inherit; text-decoration: none; }
   .hero-portrait { order: -1; }
   .about-grid { grid-template-columns: 1fr; gap: 32px; }
   .cards { grid-template-columns: repeat(2, 1fr); }
+  .fiverr-card { grid-template-columns: 1fr; gap: 30px; padding: 34px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 700px) {
   .nav-links {
@@ -209,6 +269,7 @@ a { color: inherit; text-decoration: none; }
   .nav-links a:hover { background: rgba(255,255,255,.06); }
   .nav-toggle { display: flex; }
   .cards, .projects { grid-template-columns: 1fr; }
+  .fiverr-services { grid-template-columns: 1fr; }
   .contact-card { padding: 32px 24px; }
   .footer { flex-direction: column; }
 }
