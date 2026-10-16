@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>On-Device AI Agent — Case Study | Zubair Alam</title>
+  <meta name="description" content="An agentic assistant that automates phone and desktop workflows — scheduling, messaging and data tasks via LLM tool-calling." />
+  <meta name="keywords" content="AI agent, tool calling, LLM, automation, ADB, on-device AI, Zubair Alam" />
+  <meta name="author" content="Zubair Alam" />
+  <meta property="og:title" content="On-Device AI Agent — Case Study" />
+  <meta property="og:description" content="An agentic assistant automating phone and desktop workflows via LLM tool-calling." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://codexzubair.com/projects/on-device-ai-agent.html" />
+  <link rel="canonical" href="https://codexzubair.com/projects/on-device-ai-agent.html" />
+  <link rel="icon" href="../assets/profile.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../pages.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="glow glow-a" aria-hidden="true"></div>
+  <div class="glow glow-b" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="../index.html"><span class="brand-mark">ZA</span><span class="brand-text">Zubair Alam</span></a>
+    <nav class="nav-links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#projects">Work</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  </header>
+
+  <main class="page-wrap">
+    <nav class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../index.html#projects">Work</a><span>/</span> On-Device AI Agent</nav>
+
+    <div class="article-head">
+      <span class="kicker">Agent · Automation</span>
+      <h1>On-Device AI Agent</h1>
+      <p class="article-meta"><span>Agentic assistant</span><span>·</span><span>LLM tool-calling</span></p>
+    </div>
+
+    <div class="spec-grid">
+      <div class="spec"><span>Role</span><strong>AI agent engineering</strong></div>
+      <div class="spec"><span>Stack</span><strong>Python · LLM · ADB</strong></div>
+      <div class="spec"><span>Platforms</span><strong>Phone &amp; desktop</strong></div>
+      <div class="spec"><span>Type</span><strong>Autonomous agent</strong></div>
+    </div>
+
+    <div class="article-body">
+      <h2>Overview</h2>
+      <p>
+        An agentic assistant that automates phone and desktop workflows — scheduling, messaging and data tasks —
+        through LLM tool-calling.
+      </p>
+
+      <h2>The problem</h2>
+      <p>
+        Repetitive device tasks — scheduling, messaging, moving data between apps — are time-consuming and easy to
+        get wrong. The goal was an assistant that could actually <em>operate</em> the device, safely, not just chat
+        about it.
+      </p>
+
+      <h2>Approach</h2>
+      <ul>
+        <li>Designed a small set of strictly-typed tools (<code>send_message</code>, <code>create_event</code>, <code>read_contact</code>) with clear schemas and descriptions.</li>
+        <li>Implemented a bounded agent loop with step limits, timeouts and per-task cost caps.</li>
+        <li>Classified tools by risk and required explicit confirmation for anything irreversible or external.</li>
+        <li>Used a small local model for routing and a larger model only for complex steps — keeping runs fast and private.</li>
+        <li>Logged every reasoning step, tool call and result for debugging and evaluation.</li>
+        <li>Mitigated prompt-injection by refusing to let untrusted content trigger tool calls directly.</li>
+      </ul>
+
+      <h2>Result</h2>
+      <p>
+        A predictable on-device agent that automates real workflows while keeping the user in control of anything
+        consequential — reliable enough to trust with daily tasks.
+      </p>
+
+      <h2>Stack</h2>
+      <ul class="tags"><li>Python</li><li>LLM</li><li>ADB</li><li>Tool-Calling</li><li>Automation</li></ul>
+
+      <h2>Related reading</h2>
+      <p><a href="../blog/on-device-ai-agents-tool-calling.html">On-Device AI Agents with LLM Tool-Calling →</a></p>
+    </div>
+
+    <div class="article-cta">
+      <h3>Want an agent that actually works?</h3>
+      <p>I design agents and automations that are reliable and safe.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://www.fiverr.com/s/L3dYVZY" target="_blank" rel="noopener">Hire me on Fiverr</a>
+        <a class="btn btn-ghost" href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Zubair Alam. All rights reserved.</p>
+    <p class="built">AI Software Engineer · <a href="https://codexzubair.com">codexzubair.com</a></p>
+  </footer>
+  <script src="../main.js"></script>
+</body>
+</html>

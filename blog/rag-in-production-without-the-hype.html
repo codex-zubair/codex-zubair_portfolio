@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAG in Production, Without the Hype | Zubair Alam</title>
+  <meta name="description" content="What actually matters when retrieval-augmented generation has to work for real users — chunking, evals, guardrails and cost." />
+  <meta name="keywords" content="RAG, retrieval augmented generation, LLM, embeddings, vector search, AI engineering, Zubair Alam" />
+  <meta name="author" content="Zubair Alam" />
+  <meta property="og:title" content="RAG in Production, Without the Hype" />
+  <meta property="og:description" content="What actually matters when retrieval has to work for real users." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://codexzubair.com/blog/rag-in-production-without-the-hype.html" />
+  <link rel="canonical" href="https://codexzubair.com/blog/rag-in-production-without-the-hype.html" />
+  <link rel="icon" href="../assets/profile.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../pages.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "RAG in Production, Without the Hype",
+    "author": { "@type": "Person", "name": "Zubair Alam" },
+    "publisher": { "@type": "Person", "name": "Zubair Alam" },
+    "datePublished": "2026-02-03",
+    "mainEntityOfPage": "https://codexzubair.com/blog/rag-in-production-without-the-hype.html",
+    "description": "What actually matters when retrieval has to work for real users."
+  }
+  </script>
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="glow glow-a" aria-hidden="true"></div>
+  <div class="glow glow-b" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark">ZA</span>
+      <span class="brand-text">Zubair Alam</span>
+    </a>
+    <nav class="nav-links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#projects">Work</a>
+      <a href="index.html">Blog</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main class="page-wrap">
+    <nav class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Blog</a><span>/</span> RAG</nav>
+
+    <div class="article-head">
+      <span class="kicker">AI</span>
+      <h1>RAG in Production, Without the Hype</h1>
+      <div class="article-meta">
+        <span>By Zubair Alam</span><span>·</span><span>Feb 3, 2026</span><span>·</span><span>7 min read</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p>
+        Retrieval-augmented generation has a reputation problem. The demo is a five-line script that answers
+        questions about a PDF, so everyone assumes the hard part is done. In production, the five-line script
+        is about 5% of the work, and most of it doesn't involve the model at all.
+      </p>
+      <p>This is what I've learned actually deciding whether a RAG system is good enough to ship.</p>
+
+      <h2>The retriever is the product</h2>
+      <p>
+        If retrieval returns the wrong passages, no amount of prompt engineering will save the answer. The model
+        can only reason over what you hand it. So I treat retrieval as the primary system and the generation step
+        as a formatting layer on top.
+      </p>
+      <p>Concretely, that means spending time on:</p>
+      <ul>
+        <li><strong>Chunking strategy</strong> — semantic, heading-aware chunks beat fixed character splits almost every time.</li>
+        <li><strong>Metadata filters</strong> — date, source, tenant and permissions should narrow candidates before similarity ever runs.</li>
+        <li><strong>Hybrid search</strong> — combine keyword (BM25-style) with vector search; pure embeddings miss exact terms like IDs and names.</li>
+        <li><strong>Reranking</strong> — a cheap cross-encoder rerank on the top 50 candidates fixes a surprising amount of noise.</li>
+      </ul>
+      <div class="callout">
+        <p><strong>My default stack:</strong> hybrid retrieval → rerank top 50 → pass the best 4–6 chunks. It's boring, and it wins.</p>
+      </div>
+
+      <h2>You cannot improve what you don't measure</h2>
+      <p>
+        "It seemed to answer well" is not an evaluation. Before optimising anything I build a small golden set:
+        a few dozen real questions with known-correct answers, including the ugly ones — ambiguous queries,
+        questions with no answer in the corpus, and questions that require combining two documents.
+      </p>
+      <p>Then I track two separate numbers:</p>
+      <ul>
+        <li><strong>Retrieval recall</strong> — did the correct passage appear in the top <em>k</em>?</li>
+        <li><strong>Answer faithfulness</strong> — is the generated answer supported by the retrieved text, with no invention?</li>
+      </ul>
+      <p>
+        Splitting these two is the single most useful debugging move. When an answer is wrong, you immediately know
+        whether to fix retrieval or the prompt — and usually it's retrieval.
+      </p>
+
+      <h2>Guardrails are not optional</h2>
+      <p>A RAG system that can't say "I don't know" is a liability. Production guardrails I always ship:</p>
+      <ul>
+        <li><strong>Grounding check</strong> — refuse to answer when the top similarity score is below a threshold.</li>
+        <li><strong>Citations</strong> — every claim links to its source passage, so users can verify.</li>
+        <li><strong>Permission filtering</strong> — a user must never retrieve a document they can't open directly.</li>
+        <li><strong>Output validation</strong> — schema-validate structured responses before they reach the app.</li>
+      </ul>
+      <p>
+        The permission one is a security bug waiting to happen if you skip it. Filter at the data layer, not in the
+        prompt.
+      </p>
+
+      <h2>Cost and latency are design constraints</h2>
+      <p>
+        Retrieval adds work, and generation is the expensive part. Two habits keep this in budget: cache embeddings
+        and never re-embed unchanged documents, and cap context — the best four chunks, not the best forty. Feeding
+        the model more text is slower, pricier, and often <em>less</em> accurate, because you dilute the signal.
+      </p>
+      <p>
+        For steaming, I stream tokens so the user sees progress immediately, and I run retrieval and any cheap
+        pre-processing in parallel where possible.
+      </p>
+
+      <h2>When RAG is the wrong tool</h2>
+      <p>
+        RAG is not a universal answer. If the task is classification, extraction, or summarisation of a single known
+        document, you don't need retrieval — just pass the document. If the knowledge is a stable, structured
+        database, query the database. Reach for RAG when the answer is spread across many documents and changes
+        over time.
+      </p>
+
+      <h2>The honest summary</h2>
+      <p>
+        Good RAG is mostly information-retrieval engineering: chunk well, retrieve hybrid, rerank, measure recall
+        and faithfulness separately, filter by permission, and make the system comfortable saying "I don't know."
+        The model is the easy part. Everything around it is what makes it production-grade.
+      </p>
+    </div>
+
+    <ul class="article-tags">
+      <li>RAG</li><li>LLM</li><li>Vector Search</li><li>Evaluation</li><li>AI Engineering</li>
+    </ul>
+
+    <div class="article-cta">
+      <h3>Need RAG that actually works?</h3>
+      <p>I design and ship retrieval systems that hold up with real users and real data.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://www.fiverr.com/s/L3dYVZY" target="_blank" rel="noopener">Hire me on Fiverr</a>
+        <a class="btn btn-ghost" href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Zubair Alam. All rights reserved.</p>
+    <p class="built">AI Software Engineer · <a href="https://codexzubair.com">codexzubair.com</a></p>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>

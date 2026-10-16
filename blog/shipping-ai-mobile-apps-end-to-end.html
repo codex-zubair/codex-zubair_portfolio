@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shipping an AI Mobile App End-to-End: Idea to Google Play | Zubair Alam</title>
+  <meta name="description" content="The full pipeline for shipping an AI mobile app — scoping, the AI layer, Flutter delivery, and getting past store review without rewrites." />
+  <meta name="keywords" content="AI mobile app, Flutter, LLM integration, Google Play, app publishing, Zubair Alam" />
+  <meta name="author" content="Zubair Alam" />
+  <meta property="og:title" content="Shipping an AI Mobile App End-to-End: Idea to Google Play" />
+  <meta property="og:description" content="Scoping, the AI layer, Flutter delivery and surviving store review." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://codexzubair.com/blog/shipping-ai-mobile-apps-end-to-end.html" />
+  <link rel="canonical" href="https://codexzubair.com/blog/shipping-ai-mobile-apps-end-to-end.html" />
+  <link rel="icon" href="../assets/profile.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../pages.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Shipping an AI Mobile App End-to-End: Idea to Google Play",
+    "author": { "@type": "Person", "name": "Zubair Alam" },
+    "publisher": { "@type": "Person", "name": "Zubair Alam" },
+    "datePublished": "2026-01-12",
+    "mainEntityOfPage": "https://codexzubair.com/blog/shipping-ai-mobile-apps-end-to-end.html",
+    "description": "Scoping, the AI layer, Flutter delivery and surviving store review."
+  }
+  </script>
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="glow glow-a" aria-hidden="true"></div>
+  <div class="glow glow-c" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark">ZA</span>
+      <span class="brand-text">Zubair Alam</span>
+    </a>
+    <nav class="nav-links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#projects">Work</a>
+      <a href="index.html">Blog</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main class="page-wrap">
+    <nav class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Blog</a><span>/</span> AI Mobile Apps</nav>
+
+    <div class="article-head">
+      <span class="kicker">Engineering</span>
+      <h1>Shipping an AI Mobile App End-to-End: Idea to Google Play</h1>
+      <div class="article-meta">
+        <span>By Zubair Alam</span><span>·</span><span>Jan 12, 2026</span><span>·</span><span>8 min read</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p>
+        Most AI app projects fail in the same place: they demo beautifully and then stall before production.
+        The model works, the pitch is good, and yet the app never reaches a real user's home screen. After
+        shipping AI-powered apps through Google Play and the App Store for paying clients, I've found the
+        difference between a demo and a shipped product is almost never the model. It's the pipeline around it.
+      </p>
+      <p>Here's the end-to-end process I actually use.</p>
+
+      <h2>1. Scope around a single job, not "AI features"</h2>
+      <p>
+        "Add AI to the app" is not a scope. A shippable scope is a single, testable job: <em>turn a photo into a
+        listing description</em>, <em>answer support questions from our docs</em>, <em>summarise a voice note</em>.
+        Pick one job, define what "correct" means, and build the AI layer to serve only that.
+      </p>
+      <p>
+        This matters because AI features carry latency, cost, and failure modes. One well-defined job lets you
+        measure all three. Five vague jobs give you a beautiful prototype nobody can ship.
+      </p>
+
+      <h2>2. Decide where the intelligence lives</h2>
+      <p>You have three real options, and they trade off differently:</p>
+      <ul>
+        <li><strong>Cloud LLM API</strong> — fastest to build, best quality, but needs connectivity and meters cost per call.</li>
+        <li><strong>On-device model</strong> — private and offline, but constrained by phone hardware and model size.</li>
+        <li><strong>Hybrid</strong> — a small on-device model for instant/offline tasks, cloud for the heavy lifting.</li>
+      </ul>
+      <p>
+        For most client apps I default to hybrid: run cheap classification and validation on-device, and call the
+        cloud only when the task genuinely needs a large model. It cuts cost dramatically and keeps the app usable
+        on a flaky connection.
+      </p>
+
+      <h2>3. Design the AI layer as a service, not sprinkled calls</h2>
+      <p>
+        The mistake I see most often is calling the model directly from UI code. Instead, wrap it behind a small
+        client-side service that owns the prompt, the retries, the fallback, and the error surface.
+      </p>
+      <pre><code>class AiService {
+  Future&lt;Listing&gt; describe(Asset image) async {
+    try {
+      final res = await api.complete(image, prompt: listingPrompt);
+      return Listing.parse(res);
+    } on TimeoutException {
+      return Listing.fallback();     // never block the user
+    } on ApiException {
+      return Listing.fallback();
+    }
+  }
+}</code></pre>
+      <p>
+        This one seam is where reliability lives. It gives you a single place to add caching, streaming, retries,
+        and feature flags — and it makes the AI behaviour testable without a UI.
+      </p>
+
+      <h2>4. Build the fallback path first</h2>
+      <p>
+        AI calls fail: no signal, rate limits, model outages, timeouts. If the app is unusable when the model is
+        down, you've built a demo. Ship the non-AI fallback <em>before</em> the AI path, then treat AI as the
+        enhancement. Users forgive a good fallback; they don't forgive a frozen spinner.
+      </p>
+      <div class="callout">
+        <p><strong>Rule of thumb:</strong> the app should be fully usable with the AI turned off. AI makes it better, not possible.</p>
+      </div>
+
+      <h2>5. Optimise for the store from day one</h2>
+      <p>Google Play and the App Store both scrutinise AI apps, and the requirements start before you submit:</p>
+      <ul>
+        <li><strong>Data safety / privacy</strong> — declare exactly what you send to model providers and why.</li>
+        <li><strong>Content policy</strong> — generative output needs moderation and a reporting path.</li>
+        <li><strong>Permissions</strong> — request the minimum; justify each one in the listing.</li>
+        <li><strong>Account deletion</strong> — required if you have accounts, and reviewers check it.</li>
+        <li><strong>Screenshots &amp; listing</strong> — show the real product, not a marketing render.</li>
+      </ul>
+      <p>
+        I've rescued more than a few rejected apps, and nearly every rejection traces back to something ignored in
+        this list during development. Fixing it later means rework and another review cycle.
+      </p>
+
+      <h2>6. Release with instrumentation, not hope</h2>
+      <p>
+        Before the first release I wire up analytics around the AI path specifically: success rate, latency
+        distribution, fallback frequency, and cost per active user. Without these numbers you're guessing about
+        quality and burn. With them, tuning becomes an engineering task instead of a vibe.
+      </p>
+
+      <h2>What "shipped" actually means</h2>
+      <p>
+        Shipped means a real user installs it, completes the job, and the app survives a bad network, a model
+        outage, and a store review. That's a much higher bar than a working demo — and it's the bar clients pay for.
+        Get the scope tight, put the intelligence behind a clean seam, build the fallback first, and treat store
+        compliance as part of the build, not a last step.
+      </p>
+      <p>
+        Do that, and the AI stops being a risk and starts being the product.
+      </p>
+    </div>
+
+    <ul class="article-tags">
+      <li>AI</li><li>Flutter</li><li>LLM</li><li>Google Play</li><li>Product</li>
+    </ul>
+
+    <div class="article-cta">
+      <h3>Building an AI mobile app?</h3>
+      <p>I take AI products from idea to the store — scoping, the AI layer, and publishing.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://www.fiverr.com/s/L3dYVZY" target="_blank" rel="noopener">Hire me on Fiverr</a>
+        <a class="btn btn-ghost" href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Zubair Alam. All rights reserved.</p>
+    <p class="built">AI Software Engineer · <a href="https://codexzubair.com">codexzubair.com</a></p>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>

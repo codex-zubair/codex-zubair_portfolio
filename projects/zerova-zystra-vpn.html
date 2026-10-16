@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zerova / Zystra VPN — Case Study | Zubair Alam</title>
+  <meta name="description" content="A cross-platform Flutter VPN client with WireGuard core — native tunnel management, multi-region servers, and a full rebrand lifecycle shipped to Google Play." />
+  <meta name="keywords" content="WireGuard VPN, Flutter VPN, Kotlin, Android, Google Play, Zubair Alam" />
+  <meta name="author" content="Zubair Alam" />
+  <meta property="og:title" content="Zerova / Zystra VPN — Case Study" />
+  <meta property="og:description" content="A cross-platform Flutter VPN client shipped to Google Play." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://codexzubair.com/projects/zerova-zystra-vpn.html" />
+  <link rel="canonical" href="https://codexzubair.com/projects/zerova-zystra-vpn.html" />
+  <link rel="icon" href="../assets/profile.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../pages.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="glow glow-a" aria-hidden="true"></div>
+  <div class="glow glow-b" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="../index.html"><span class="brand-mark">ZA</span><span class="brand-text">Zubair Alam</span></a>
+    <nav class="nav-links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#projects">Work</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  </header>
+
+  <main class="page-wrap">
+    <nav class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../index.html#projects">Work</a><span>/</span> Zerova / Zystra VPN</nav>
+
+    <div class="article-head">
+      <span class="kicker">Product · Security · Featured</span>
+      <h1>Zerova / Zystra VPN</h1>
+      <p class="article-meta"><span>Cross-platform VPN client</span><span>·</span><span>Shipped to Google Play</span></p>
+    </div>
+
+    <div class="spec-grid">
+      <div class="spec"><span>Role</span><strong>Mobile engineering, publishing</strong></div>
+      <div class="spec"><span>Stack</span><strong>Flutter · Dart · Kotlin · WireGuard</strong></div>
+      <div class="spec"><span>Platforms</span><strong>Android (Google Play)</strong></div>
+      <div class="spec"><span>Type</span><strong>Product · Security · Rebrand</strong></div>
+    </div>
+
+    <div class="article-body">
+      <h2>Overview</h2>
+      <p>
+        A cross-platform VPN client built on a WireGuard core, with native tunnel management, multi-region server
+        selection, and a complete privacy and rebrand lifecycle — designed, built, signed and shipped to Google Play.
+      </p>
+
+      <h2>The problem</h2>
+      <p>
+        The client needed a real VPN: not a wrapper around someone else's SDK, but a proper tunnel with native
+        service integration, reliable connection state, and store-compliant privacy handling. It also had to survive
+        a full rebrand from <strong>Zerova</strong> to <strong>Zystra</strong> without breaking existing installs or
+        the signing chain.
+      </p>
+
+      <h2>Approach</h2>
+      <ul>
+        <li>Built the tunnel in the native Android layer via <code>VpnService</code> and the WireGuard core, keeping the Flutter UI as a thin state reflector.</li>
+        <li>Implemented connection lifecycle — connect, disconnect, reconnect-on-network-change and a foreground service notification.</li>
+        <li>Added multi-region server selection with latency-aware defaults and per-region configs.</li>
+        <li>Wrote the VPN service declaration, data-safety form and privacy policy to match actual app behaviour.</li>
+        <li>Preserved the signing key through the rebrand so Play treated the new identity as an update.</li>
+      </ul>
+
+      <h2>Result</h2>
+      <p>
+        A production VPN client delivered through the full store lifecycle — including VPN declaration, data-safety
+        compliance and a rebrand handled without losing update continuity on Google Play.
+      </p>
+
+      <h2>Stack</h2>
+      <ul class="tags"><li>Flutter</li><li>Dart</li><li>Kotlin</li><li>WireGuard</li><li>VpnService</li><li>Android</li></ul>
+
+      <h2>Related reading</h2>
+      <p><a href="../blog/wireguard-vpn-to-google-play.html">Shipping a WireGuard VPN to Google Play →</a></p>
+    </div>
+
+    <div class="article-cta">
+      <h3>Need an app built and shipped?</h3>
+      <p>From native integration to store review — I handle the whole journey.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://www.fiverr.com/s/L3dYVZY" target="_blank" rel="noopener">Hire me on Fiverr</a>
+        <a class="btn btn-ghost" href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Zubair Alam. All rights reserved.</p>
+    <p class="built">AI Software Engineer · <a href="https://codexzubair.com">codexzubair.com</a></p>
+  </footer>
+  <script src="../main.js"></script>
+</body>
+</html>

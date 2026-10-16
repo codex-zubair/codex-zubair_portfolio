@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shipping a WireGuard VPN to Google Play | Zubair Alam</title>
+  <meta name="description" content="How to ship a WireGuard-based VPN client to Google Play — native tunneling, the VPN service declaration, data-safety forms and store review." />
+  <meta name="keywords" content="WireGuard, VPN, Flutter, Google Play, Android, app publishing, Zubair Alam" />
+  <meta name="author" content="Zubair Alam" />
+  <meta property="og:title" content="Shipping a WireGuard VPN to Google Play" />
+  <meta property="og:description" content="Native tunneling, VPN service declaration, data-safety and surviving store review." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://codexzubair.com/blog/wireguard-vpn-to-google-play.html" />
+  <link rel="canonical" href="https://codexzubair.com/blog/wireguard-vpn-to-google-play.html" />
+  <link rel="icon" href="../assets/profile.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../pages.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Shipping a WireGuard VPN to Google Play",
+    "author": { "@type": "Person", "name": "Zubair Alam" },
+    "publisher": { "@type": "Person", "name": "Zubair Alam" },
+    "datePublished": "2026-02-20",
+    "mainEntityOfPage": "https://codexzubair.com/blog/wireguard-vpn-to-google-play.html",
+    "description": "Native tunneling, VPN service declaration, data-safety and surviving store review."
+  }
+  </script>
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="glow glow-a" aria-hidden="true"></div>
+  <div class="glow glow-c" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark">ZA</span>
+      <span class="brand-text">Zubair Alam</span>
+    </a>
+    <nav class="nav-links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#projects">Work</a>
+      <a href="index.html">Blog</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main class="page-wrap">
+    <nav class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Blog</a><span>/</span> VPN</nav>
+
+    <div class="article-head">
+      <span class="kicker">Mobile</span>
+      <h1>Shipping a WireGuard VPN to Google Play</h1>
+      <div class="article-meta">
+        <span>By Zubair Alam</span><span>·</span><span>Feb 20, 2026</span><span>·</span><span>8 min read</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p>
+        A VPN client looks simple from the outside: a big toggle. Under the hood it touches the most sensitive APIs
+        on the platform, and Google Play treats VPN apps with extra scrutiny. I built and shipped a cross-platform
+        WireGuard client — <strong>Zerova / Zystra</strong> — through the full lifecycle, including a rebrand. Here's
+        what actually matters.
+      </p>
+
+      <h2>Start with the native tunnel, not the UI</h2>
+      <p>
+        The tunnelling must live in the platform layer. On Android that means implementing a
+        <code>VpnService</code>; on iOS, a <code>NetworkExtension</code> packet-tunnel provider. WireGuard gives you
+        the crypto and the protocol, but you still own the service lifecycle: start, stop, reconnect, and the
+        foreground notification.
+      </p>
+      <p>
+        In Flutter I keep the UI thin and push all tunnel control across a platform channel. The UI should never
+        assume the tunnel is up — it renders the state the native layer reports, including transitions.
+      </p>
+      <pre><code>// Conceptual platform channel shape
+setState(method: "connect", server: "sg-01", config: wgConfig)
+// native side: create TUN, apply routes, start WireGuard, post notification
+onStateChanged: { status: "connecting" | "connected" | "disconnected" }</code></pre>
+
+      <h2>The VPN service declaration is mandatory</h2>
+      <p>
+        Google Play requires any app using <code>VpnService</code> to complete a <strong>VPN service declaration</strong>
+        and use the app as its core functionality. This is a policy gate, not a formality: misdeclaring gets the app
+        removed. You must explain how the VPN works, that you use the platform's VpnService, and that you follow the
+        secure-handling requirements.
+      </p>
+      <div class="callout">
+        <p><strong>Non-negotiable:</strong> declare the VPN service, use the Android VpnService API, and never redirect or
+        inspect traffic you don't need. Play reviewers verify all three.</p>
+      </div>
+
+      <h2>Data safety is where VPN apps get rejected</h2>
+      <p>
+        A VPN sees traffic metadata by nature, so the data-safety form must be precise. For a client that only tunnels
+        and stores no logs, the declaration is minimal — but it has to match your actual behaviour exactly. Common
+        rejection triggers I've seen:
+      </p>
+      <ul>
+        <li>Declaring "no data collected" while shipping analytics that send device IDs.</li>
+        <li>Not disclosing the crash-reporting SDKs bundled by a Flutter plugin.</li>
+        <li>A privacy policy that contradicts the data-safety form.</li>
+        <li>Missing account-deletion flow when the app has accounts.</li>
+      </ul>
+      <p>
+        Audit your dependency tree before you fill the form. The plugins you inherited count as your data collection.
+      </p>
+
+      <h2>Signing, rebranding, and versioning</h2>
+      <p>
+        If you're shipping under an organisation, you need an organisation account, a D-U-N-S number, and a verified
+        developer identity — get this in place early because verification takes time. For the rebrand, the important
+        detail is <strong>app signing continuity</strong>: keep the same signing key so Play treats the new build as an
+        update, not a new app. Bundle IDs and signing keys are for life.
+      </p>
+      <p>Store assets you'll need to produce for each release:</p>
+      <ul>
+        <li>App icon, feature graphic, and at least 2 phone screenshots (4+ recommended).</li>
+        <li>A short and full description that leads with the core VPN functionality.</li>
+        <li>Content rating questionnaire — VPN apps answer sensitive questions here.</li>
+        <li>A public privacy policy URL that matches the data-safety form.</li>
+      </ul>
+
+      <h2>Handle the review feedback loop gracefully</h2>
+      <p>
+        Even a clean VPN submission often gets one round of questions. The winning approach is a precise, factual
+        reply: quote the policy, point to where your app satisfies it, and attach evidence when asked. Vague responses
+        slow review to a crawl. I keep a short "compliance dossier" per app — declarations, policy excerpts, and
+        screenshots — so answers take minutes, not days.
+      </p>
+
+      <h2>Reliability is the real feature</h2>
+      <p>
+        A VPN that disconnects when the screen locks is worthless. After shipping, the work that keeps users is
+        unglamorous: reconnect-on-network-change, kill-switch behaviour, reliable foreground notification, and
+        battery-friendly keep-alive. Users judge a VPN on whether the toggle stays green, not on the crypto.
+      </p>
+
+      <h2>Takeaways</h2>
+      <ul>
+        <li>Put the tunnel in the native layer; keep the UI a thin state reflector.</li>
+        <li>Complete the VPN service declaration — it's a hard requirement.</li>
+        <li>Make the data-safety form match reality, including every SDK.</li>
+        <li>Preserve your signing key through any rebrand.</li>
+        <li>Answer reviewers factually and fast with a compliance dossier ready.</li>
+      </ul>
+      <p>
+        Do this and a VPN app is very shippable. Skip it and you'll meet the rejection queue — repeatedly.
+      </p>
+    </div>
+
+    <ul class="article-tags">
+      <li>WireGuard</li><li>VPN</li><li>Flutter</li><li>Android</li><li>Google Play</li>
+    </ul>
+
+    <div class="article-cta">
+      <h3>Need an app shipped — or a rejection fixed?</h3>
+      <p>I handle Google Play and App Store publishing end-to-end, including VPN and sensitive-permission apps.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://www.fiverr.com/s/L3dYVZY" target="_blank" rel="noopener">Hire me on Fiverr</a>
+        <a class="btn btn-ghost" href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Zubair Alam. All rights reserved.</p>
+    <p class="built">AI Software Engineer · <a href="https://codexzubair.com">codexzubair.com</a></p>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>

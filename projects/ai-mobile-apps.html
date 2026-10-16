@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI-Powered Mobile Apps — Case Study | Zubair Alam</title>
+  <meta name="description" content="Android and cross-platform apps with integrated LLM features — chatbots, vision, voice and smart recommendations." />
+  <meta name="keywords" content="AI mobile apps, OpenAI, Gemini, Flutter, Kotlin, LLM, Zubair Alam" />
+  <meta name="author" content="Zubair Alam" />
+  <meta property="og:title" content="AI-Powered Mobile Apps — Case Study" />
+  <meta property="og:description" content="Android and cross-platform apps with integrated LLM features." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://codexzubair.com/projects/ai-mobile-apps.html" />
+  <link rel="canonical" href="https://codexzubair.com/projects/ai-mobile-apps.html" />
+  <link rel="icon" href="../assets/profile.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../pages.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="glow glow-a" aria-hidden="true"></div>
+  <div class="glow glow-c" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="../index.html"><span class="brand-mark">ZA</span><span class="brand-text">Zubair Alam</span></a>
+    <nav class="nav-links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#projects">Work</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  </header>
+
+  <main class="page-wrap">
+    <nav class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../index.html#projects">Work</a><span>/</span> AI Mobile Apps</nav>
+
+    <div class="article-head">
+      <span class="kicker">AI · Mobile</span>
+      <h1>AI-Powered Mobile Apps</h1>
+      <p class="article-meta"><span>Android &amp; cross-platform</span><span>·</span><span>LLM-integrated</span></p>
+    </div>
+
+    <div class="spec-grid">
+      <div class="spec"><span>Role</span><strong>AI + mobile engineering</strong></div>
+      <div class="spec"><span>Stack</span><strong>OpenAI · Gemini · Flutter · Kotlin</strong></div>
+      <div class="spec"><span>Platforms</span><strong>Android &amp; iOS</strong></div>
+      <div class="spec"><span>Type</span><strong>AI product development</strong></div>
+    </div>
+
+    <div class="article-body">
+      <h2>Overview</h2>
+      <p>
+        A set of Android and cross-platform apps with integrated LLM features — conversational chatbots, image
+        understanding, voice interaction and smart recommendations — built for real users rather than demos.
+      </p>
+
+      <h2>The problem</h2>
+      <p>
+        Clients wanted genuine AI capabilities in their apps without the fragility that comes from calling a model
+        directly from UI code. The challenge was reliability: AI calls fail, latency varies, and costs need watching.
+      </p>
+
+      <h2>Approach</h2>
+      <ul>
+        <li>Wrapped all model access behind an <code>AiService</code> seam that owns prompts, retries, caching and fallbacks.</li>
+        <li>Implemented streaming responses so users see progress immediately.</li>
+        <li>Built graceful non-AI fallbacks so apps stay usable when the model is unavailable.</li>
+        <li>Added on-device classification for cheap tasks and cloud models only where needed — cutting cost and keeping things fast.</li>
+        <li>Instrumented the AI path with success rate, latency and fallback frequency.</li>
+      </ul>
+
+      <h2>Result</h2>
+      <p>
+        Shipped AI features that behave predictably in production — responsive under load, resilient to outages, and
+        cost-controlled through hybrid on-device / cloud routing.
+      </p>
+
+      <h2>Stack</h2>
+      <ul class="tags"><li>OpenAI</li><li>Gemini</li><li>Flutter</li><li>Kotlin</li><li>REST</li><li>Firebase</li></ul>
+
+      <h2>Related reading</h2>
+      <p><a href="../blog/shipping-ai-mobile-apps-end-to-end.html">Shipping an AI Mobile App End-to-End →</a></p>
+    </div>
+
+    <div class="article-cta">
+      <h3>Want AI in your app?</h3>
+      <p>I add LLM features that ship and stay reliable in production.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://www.fiverr.com/s/L3dYVZY" target="_blank" rel="noopener">Hire me on Fiverr</a>
+        <a class="btn btn-ghost" href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Zubair Alam. All rights reserved.</p>
+    <p class="built">AI Software Engineer · <a href="https://codexzubair.com">codexzubair.com</a></p>
+  </footer>
+  <script src="../main.js"></script>
+</body>
+</html>
