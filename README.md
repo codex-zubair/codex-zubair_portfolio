@@ -7,7 +7,7 @@ Personal portfolio website for **Zubair Alam — AI Software Engineer**, live at
 Static site (no build step), deployed via GitHub Pages.
 
 ```
-index.html          # Homepage — hero, about, expertise, toolbox, capabilities, work, writing, journey, Fiverr, contact
+index.html          # Homepage — hero, about, expertise, toolbox, capabilities, certifications, work, writing, journey, Fiverr, contact
 styles.css          # Main styles
 pages.css           # Shared styles for blog & project subpages
 main.js             # Nav, counters, reveal animations
