@@ -12,7 +12,9 @@
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://codexzubair.com/projects/on-device-ai-agent.html" />
   <link rel="canonical" href="https://codexzubair.com/projects/on-device-ai-agent.html" />
-  <link rel="icon" href="../assets/profile.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../assets/icon-512.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -21,18 +23,25 @@
 </head>
 <body>
   <div class="bg-grid" aria-hidden="true"></div>
-  <div class="glow glow-a" aria-hidden="true"></div>
-  <div class="glow glow-b" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true">
+    <span class="aurora-a"></span>
+    <span class="aurora-b"></span>
+    <span class="aurora-c"></span>
+  </div>
+  <div class="noise" aria-hidden="true"></div>
 
   <header class="nav" id="nav">
     <a class="brand" href="../index.html"><span class="brand-mark">ZA</span><span class="brand-text">Zubair Alam</span></a>
     <nav class="nav-links">
       <a href="../index.html#about">About</a>
+      <a href="../index.html#apps">Apps</a>
       <a href="../index.html#projects">Work</a>
       <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#process">Process</a>
       <a href="../blog/index.html">Blog</a>
       <a href="../index.html#contact">Contact</a>
     </nav>
+    <a class="nav-cta" href="../index.html#contact">Let's talk <span aria-hidden="true">→</span></a>
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
   </header>
 
@@ -100,9 +109,36 @@
   </main>
 
   <footer class="footer">
-    <p>© <span id="year"></span> Zubair Alam. All rights reserved.</p>
-    <p class="built">AI Software Engineer · <a href="https://codexzubair.com">codexzubair.com</a></p>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a class="brand" href="../index.html">
+          <span class="brand-mark">ZA</span>
+          <span class="brand-text">Zubair Alam</span>
+        </a>
+        <p>AI Software Engineer · building and shipping AI products from Bangladesh to the world.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="../index.html#apps">Shipped apps</a>
+        <a href="../index.html#projects">Case studies</a>
+        <a href="../index.html#process">How I work</a>
+        <a href="../blog/">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Elsewhere</h4>
+        <a href="https://github.com/codex-zubair" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/codex-zubair/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.fiverr.com/s/L3dYVZY" target="_blank" rel="noopener">Fiverr</a>
+        <a href="https://ryzadev.com" target="_blank" rel="noopener">Ryza Dev</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Zubair Alam. All rights reserved.</p>
+      <p class="built">AI Software Engineer · <a href="https://codexzubair.com">codexzubair.com</a></p>
+    </div>
   </footer>
+  <button class="to-top" aria-label="Back to top" hidden>↑</button>
+
   <script src="../main.js"></script>
 </body>
 </html>

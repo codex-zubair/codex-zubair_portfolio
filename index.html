@@ -11,14 +11,21 @@
   <meta property="og:description" content="I build and ship AI-powered products — mobile, web, VPNs, autonomous systems and automation. Top-rated Fiverr seller. Founder of Ryza Dev." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://codexzubair.com" />
-  <meta property="og:image" content="https://codexzubair.com/assets/profile.png" />
+  <meta property="og:image" content="https://codexzubair.com/assets/og-cover.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Zubair Alam — AI Software Engineer" />
+  <meta property="og:site_name" content="Zubair Alam" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Zubair Alam — AI Software Engineer" />
   <meta name="twitter:description" content="I build and ship AI-powered mobile, web and autonomous products — from idea to Google Play &amp; App Store." />
-  <meta name="twitter:image" content="https://codexzubair.com/assets/profile.png" />
-  <meta name="theme-color" content="#060910" />
+  <meta name="twitter:image" content="https://codexzubair.com/assets/og-cover.jpg" />
+  <meta name="theme-color" content="#05070d" />
   <link rel="canonical" href="https://codexzubair.com" />
-  <link rel="icon" href="assets/profile.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/icon-512.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -32,7 +39,7 @@
     "jobTitle": "AI Software Engineer",
     "worksFor": { "@type": "Organization", "name": "Ryza Dev", "url": "https://ryzadev.com" },
     "url": "https://codexzubair.com",
-    "image": "https://codexzubair.com/assets/profile.png",
+    "image": "https://codexzubair.com/assets/profile.jpg",
     "email": "im.nmzar@gmail.com",
     "address": { "@type": "PostalAddress", "addressLocality": "Bogura / Dhaka", "addressCountry": "Bangladesh" },
     "knowsAbout": ["Artificial Intelligence", "Machine Learning", "Large Language Models", "RAG", "Flutter", "Kotlin", "Python", "TypeScript", "Next.js", "NestJS", "Computer Vision", "App Publishing", "WireGuard", "Embedded Systems"],
@@ -46,28 +53,31 @@
   </script>
 </head>
 <body>
+  <div class="page-progress" aria-hidden="true"><i></i></div>
   <div class="bg-grid" aria-hidden="true"></div>
-  <div class="glow glow-a" aria-hidden="true"></div>
-  <div class="glow glow-b" aria-hidden="true"></div>
-  <div class="glow glow-c" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true">
+    <span class="aurora-a"></span>
+    <span class="aurora-b"></span>
+    <span class="aurora-c"></span>
+  </div>
+  <div class="noise" aria-hidden="true"></div>
 
   <header class="nav" id="nav">
-    <a class="brand" href="#top">
+    <a class="brand" href="#top" aria-label="Zubair Alam — home">
       <span class="brand-mark">ZA</span>
       <span class="brand-text">Zubair Alam</span>
     </a>
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Primary">
       <a href="#about">About</a>
       <a href="#expertise">Expertise</a>
-      <a href="#stack">Stack</a>
+      <a href="#apps">Apps</a>
       <a href="#projects">Work</a>
       <a href="#skills">Skills</a>
-      <a href="#certifications">Certifications</a>
+      <a href="#process">Process</a>
       <a href="blog/">Blog</a>
-      <a href="#journey">Journey</a>
       <a href="#fiverr">Fiverr</a>
-      <a href="#contact">Contact</a>
     </nav>
+    <a class="nav-cta" href="#contact">Let's talk <span aria-hidden="true">→</span></a>
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -78,7 +88,7 @@
     <section class="hero">
       <div class="hero-inner">
         <div class="hero-copy">
-          <p class="eyebrow"><span class="dot"></span> Available for AI engineering & product work</p>
+          <p class="eyebrow"><span class="dot"></span> Available for AI engineering &amp; product work</p>
           <h1>I build AI products that <span class="grad">actually ship</span>.</h1>
           <p class="lead">
             I'm <strong>Zubair Alam</strong>, an AI Software Engineer from Bangladesh. I turn ideas into
@@ -90,28 +100,37 @@
             <a class="btn btn-primary" href="https://www.fiverr.com/s/L3dYVZY" target="_blank" rel="noopener">
               Hire me on Fiverr
             </a>
-            <a class="btn btn-ghost" href="#projects">See my work</a>
+            <a class="btn btn-ghost" href="#apps">See shipped apps <span aria-hidden="true">→</span></a>
           </div>
           <ul class="chips">
-            <li>🧠 AI Engineering</li>
-            <li>📱 AI Mobile Apps</li>
-            <li>🌐 Full-Stack Web</li>
-            <li>🚀 App Publishing</li>
-            <li>🛰️ Autonomous Systems</li>
+            <li><span aria-hidden="true">🧠</span> AI Engineering</li>
+            <li><span aria-hidden="true">📱</span> AI Mobile Apps</li>
+            <li><span aria-hidden="true">🌐</span> Full-Stack Web</li>
+            <li><span aria-hidden="true">🚀</span> App Publishing</li>
+            <li><span aria-hidden="true">🛰️</span> Autonomous Systems</li>
           </ul>
         </div>
 
         <div class="hero-portrait">
-          <div class="ring" aria-hidden="true"></div>
+          <div class="portrait-orbit" aria-hidden="true"></div>
           <div class="portrait-frame">
-            <img src="assets/profile.png" alt="Portrait of Zubair Alam" width="1254" height="1254" />
+            <picture>
+              <source srcset="assets/profile-560.webp 560w, assets/profile.webp 900w" sizes="(max-width: 700px) 74vw, 360px" type="image/webp" />
+              <source srcset="assets/profile-560.jpg 560w, assets/profile.jpg 900w" sizes="(max-width: 700px) 74vw, 360px" type="image/jpeg" />
+              <img src="assets/profile.jpg" alt="Portrait of Zubair Alam, AI Software Engineer" width="900" height="900" fetchpriority="high" />
+            </picture>
+            <span class="frame-glow" aria-hidden="true"></span>
           </div>
           <span class="orbit orbit-1" aria-hidden="true">AI</span>
           <span class="orbit orbit-2" aria-hidden="true">Flutter</span>
           <span class="orbit orbit-3" aria-hidden="true">LLM</span>
-          <div class="float-card">
+          <div class="float-card float-top">
             <span class="float-label">Fiverr · Top-Rated</span>
-            <span class="float-value">5.0 ★ · 40+ orders · Level 2</span>
+            <span class="float-value">5.0 ★ · 40+ orders</span>
+          </div>
+          <div class="float-card float-bottom">
+            <span class="float-label">Shipped</span>
+            <span class="float-value">12 apps built &amp; signed</span>
           </div>
         </div>
       </div>
@@ -136,18 +155,182 @@
     </div>
 
     <!-- ================= STATS ================= -->
-    <section class="stats-band">
+    <section class="stats-band" aria-label="Key numbers">
       <div class="stats">
         <div class="stat"><span class="stat-num" data-count="40" data-suffix="+">0</span><span class="stat-label">Orders delivered</span></div>
         <div class="stat"><span class="stat-num" data-count="5" data-suffix=".0★">0</span><span class="stat-label">Fiverr rating</span></div>
         <div class="stat"><span class="stat-num" data-count="160" data-suffix="+">0</span><span class="stat-label">GitHub repositories</span></div>
-        <div class="stat"><span class="stat-num" data-count="10" data-suffix="+">0</span><span class="stat-label">Certifications earned</span></div>
+        <div class="stat"><span class="stat-num" data-count="12" data-suffix="">0</span><span class="stat-label">Apps built &amp; signed</span></div>
+      </div>
+    </section>
+
+    <!-- ================= FEATURED APP (VPN) ================= -->
+    <section id="work" class="section feature-work">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Featured product</p>
+          <h2 class="section-title">A VPN that went from idea to Google Play.</h2>
+        </div>
+        <a class="link-arrow" href="projects/zerova-zystra-vpn.html">Read the case study <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="showcase">
+        <div class="showcase-copy">
+          <div class="showcase-meta">
+            <span class="tag">Product · Security</span>
+            <span class="star">★ Featured</span>
+          </div>
+          <h3>Zerova / Zystra VPN</h3>
+          <p>
+            A cross-platform Flutter VPN client with a WireGuard core, native tunnel management,
+            multi-region server selection and a complete privacy &amp; rebrand lifecycle — designed,
+            built, signed and shipped to Google Play.
+          </p>
+          <ul class="checklist">
+            <li>WireGuard tunnel + native Android VPN service</li>
+            <li>Server picker with latency-aware selection</li>
+            <li>Session stats, kill-switch &amp; restore-on-restart</li>
+            <li>Store listing, data-safety forms and review survival</li>
+          </ul>
+          <ul class="tags"><li>Flutter</li><li>WireGuard</li><li>Android</li><li>Kotlin</li></ul>
+          <div class="showcase-actions">
+            <a class="btn btn-primary" href="projects/zerova-zystra-vpn.html">View case study</a>
+            <a class="btn btn-ghost" href="https://www.fiverr.com/s/L3dYVZY" target="_blank" rel="noopener">Order a VPN app</a>
+          </div>
+        </div>
+
+        <div class="showcase-phones" aria-label="Zystra VPN app screens">
+          <figure class="phone phone-back">
+            <img src="assets/shots/zystra-servers.jpg" alt="Zystra VPN server selection screen" width="540" height="1106" loading="lazy" />
+          </figure>
+          <figure class="phone phone-front">
+            <img src="assets/shots/zystra-connected.jpg" alt="Zystra VPN connected screen" width="540" height="1106" loading="lazy" />
+          </figure>
+          <figure class="phone phone-side">
+            <img src="assets/shots/zystra-home.jpg" alt="Zystra VPN home screen" width="540" height="1106" loading="lazy" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SHIPPED APPS ================= -->
+    <section id="apps" class="section">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Shipped work</p>
+          <h2 class="section-title">Apps built, signed and released</h2>
+          <p class="section-sub">Twelve Android &amp; Flutter builds — from privacy tools to offline utilities and AI coaches.</p>
+        </div>
+      </div>
+
+      <div class="app-grid">
+        <article class="app-card app-featured">
+          <img src="assets/apps/zerova.png" alt="Zerova VPN app icon" width="160" height="160" loading="lazy" />
+          <div>
+            <h3>Zerova VPN</h3>
+            <p>Fast, private WireGuard VPN client — shipped to Google Play.</p>
+            <span class="app-tag">Privacy · Published</span>
+          </div>
+        </article>
+        <article class="app-card">
+          <img src="assets/apps/coresizer.png" alt="CoreSizer app icon" width="160" height="160" loading="lazy" />
+          <div>
+            <h3>CoreSizer</h3>
+            <p>Offline CCTV storage &amp; server sizing calculators for AFLY Cloud LLC.</p>
+            <span class="app-tag">Business tool</span>
+          </div>
+        </article>
+        <article class="app-card">
+          <img src="assets/apps/netcarve.png" alt="NetCarve app icon" width="160" height="160" loading="lazy" />
+          <div>
+            <h3>NetCarve</h3>
+            <p>Zero-permission subnet &amp; CIDR calculator that shows its maths.</p>
+            <span class="app-tag">Networking</span>
+          </div>
+        </article>
+        <article class="app-card">
+          <img src="assets/apps/rise.png" alt="Rise app icon" width="160" height="160" loading="lazy" />
+          <div>
+            <h3>Rise</h3>
+            <p>Adaptive routine coach for IELTS Band 8+ and healthier habits.</p>
+            <span class="app-tag">AI · Productivity</span>
+          </div>
+        </article>
+        <article class="app-card">
+          <img src="assets/apps/aniloom.png" alt="AniLoom app icon" width="160" height="160" loading="lazy" />
+          <div>
+            <h3>AniLoom</h3>
+            <p>Offline, ad-free local video player with Continue Watching for TV.</p>
+            <span class="app-tag">Media · Android TV</span>
+          </div>
+        </article>
+        <article class="app-card">
+          <img src="assets/apps/animenook.png" alt="AnimeNook app icon" width="160" height="160" loading="lazy" />
+          <div>
+            <h3>AnimeNook</h3>
+            <p>Offline random anime picker — no ads, no tracking, no internet.</p>
+            <span class="app-tag">Offline utility</span>
+          </div>
+        </article>
+        <article class="app-card">
+          <img src="assets/apps/animeye.png" alt="AniEye app icon" width="160" height="160" loading="lazy" />
+          <div>
+            <h3>AniEye</h3>
+            <p>Watch-order helper that keeps long series in the right sequence.</p>
+            <span class="app-tag">Offline utility</span>
+          </div>
+        </article>
+        <article class="app-card">
+          <img src="assets/apps/aniworthy.png" alt="AniWorthy app icon" width="160" height="160" loading="lazy" />
+          <div>
+            <h3>AniWorthy</h3>
+            <p>Offline trivia and quiz app built for fast, repeat play.</p>
+            <span class="app-tag">Game</span>
+          </div>
+        </article>
+        <article class="app-card">
+          <img src="assets/apps/episovue.png" alt="Episovue app icon" width="160" height="160" loading="lazy" />
+          <div>
+            <h3>Episovue</h3>
+            <p>Drama cliché bingo — a fun, fully offline party game.</p>
+            <span class="app-tag">Game</span>
+          </div>
+        </article>
+        <article class="app-card">
+          <img src="assets/apps/plotvard.png" alt="Plotvard app icon" width="160" height="160" loading="lazy" />
+          <div>
+            <h3>Plotvard</h3>
+            <p>Offline drama watch-order guide with a clean, fast UI.</p>
+            <span class="app-tag">Offline utility</span>
+          </div>
+        </article>
+        <article class="app-card">
+          <img src="assets/apps/toondra.png" alt="Toondra app icon" width="160" height="160" loading="lazy" />
+          <div>
+            <h3>Toondra</h3>
+            <p>Offline drama night cards for effortless discovery.</p>
+            <span class="app-tag">Offline utility</span>
+          </div>
+        </article>
+        <article class="app-card">
+          <img src="assets/apps/rekordly.png" alt="Rekordly app icon" width="160" height="160" loading="lazy" />
+          <div>
+            <h3>Rekordly</h3>
+            <p>Consent-based screen recorder for your own Messenger calls.</p>
+            <span class="app-tag">Utility</span>
+          </div>
+        </article>
       </div>
     </section>
 
     <!-- ================= ABOUT ================= -->
     <section id="about" class="section">
-      <h2 class="section-title">About</h2>
+      <div class="section-head">
+        <div>
+          <p class="kicker">About</p>
+          <h2 class="section-title">Engineer, builder, shipper.</h2>
+        </div>
+      </div>
       <div class="about-grid">
         <div class="about-text">
           <p>
@@ -171,6 +354,11 @@
             <strong>European University of Bangladesh</strong>, and I'm working toward a master's
             abroad to deepen my engineering and AI skills.
           </p>
+          <div class="about-actions">
+            <a class="btn btn-ghost" href="https://github.com/codex-zubair" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/codex-zubair/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn btn-ghost" href="https://ryzadev.com" target="_blank" rel="noopener">Ryza Dev</a>
+          </div>
         </div>
         <div class="about-side">
           <div class="terminal" aria-hidden="true">
@@ -198,8 +386,13 @@
 
     <!-- ================= EXPERTISE ================= -->
     <section id="expertise" class="section">
-      <h2 class="section-title">Expertise</h2>
-      <p class="section-sub">What I build, ship and support — end to end.</p>
+      <div class="section-head">
+        <div>
+          <p class="kicker">Expertise</p>
+          <h2 class="section-title">What I build, ship and support</h2>
+          <p class="section-sub">End to end — the AI layer, the backend, the app, and the store listing.</p>
+        </div>
+      </div>
       <div class="cards">
         <article class="card">
           <div class="card-ico">AI</div>
@@ -249,10 +442,48 @@
       </div>
     </section>
 
+    <!-- ================= PROCESS ================= -->
+    <section id="process" class="section">
+      <div class="section-head">
+        <div>
+          <p class="kicker">How I work</p>
+          <h2 class="section-title">A process built for shipping</h2>
+          <p class="section-sub">Clear scope, visible progress, working software — not endless demos.</p>
+        </div>
+      </div>
+      <ol class="process">
+        <li>
+          <span class="process-num">01</span>
+          <h3>Scope &amp; plan</h3>
+          <p>We pin down the product, the users and the must-work flows. You get a milestone plan with dates and a fixed price.</p>
+        </li>
+        <li>
+          <span class="process-num">02</span>
+          <h3>Build in the open</h3>
+          <p>Short cycles with builds you can install and test. The AI layer, backend and UI are built together — not bolted on at the end.</p>
+        </li>
+        <li>
+          <span class="process-num">03</span>
+          <h3>Harden &amp; sign</h3>
+          <p>Release builds, signing keys, permissions, privacy policy, data-safety forms and a store-ready listing.</p>
+        </li>
+        <li>
+          <span class="process-num">04</span>
+          <h3>Publish &amp; support</h3>
+          <p>Submitted to Google Play / App Store, then monitored through review. Fixes, updates and handover documentation included.</p>
+        </li>
+      </ol>
+    </section>
+
     <!-- ================= STACK ================= -->
     <section id="stack" class="section">
-      <h2 class="section-title">Toolbox</h2>
-      <p class="section-sub">The technologies I reach for every day.</p>
+      <div class="section-head">
+        <div>
+          <p class="kicker">Toolbox</p>
+          <h2 class="section-title">The technologies I reach for</h2>
+          <p class="section-sub">Boring, proven tools — used well — beat hype every time.</p>
+        </div>
+      </div>
       <div class="stack-grid">
         <div class="stack-col">
           <h3>AI &amp; Data</h3>
@@ -277,8 +508,13 @@
 
     <!-- ================= SKILLS / CAPABILITIES ================= -->
     <section id="skills" class="section">
-      <h2 class="section-title">Capabilities</h2>
-      <p class="section-sub">Everything I can design, build, ship and maintain — across the full stack and beyond.</p>
+      <div class="section-head">
+        <div>
+          <p class="kicker">Capabilities</p>
+          <h2 class="section-title">Everything I can design, build and maintain</h2>
+          <p class="section-sub">Across the full stack and beyond.</p>
+        </div>
+      </div>
       <div class="cap-grid">
         <div class="cap">
           <h3><span class="cap-ico">AI</span> AI &amp; Machine Learning</h3>
@@ -363,56 +599,58 @@
 
     <!-- ================= CERTIFICATIONS ================= -->
     <section id="certifications" class="section">
-      <h2 class="section-title">Certifications</h2>
-      <p class="section-sub">Verified credentials from Google and HackerRank.</p>
+      <div class="section-head">
+        <div>
+          <p class="kicker">Credentials</p>
+          <h2 class="section-title">Certifications</h2>
+          <p class="section-sub">Verified credentials from Google and HackerRank.</p>
+        </div>
+      </div>
       <div class="cert-grid">
         <article class="cert">
           <div class="cert-ico">▶</div>
-          <h3>Google Play Academy — Store Listing Certificate</h3>
-          <span class="cert-by">Google Play Academy · 2025</span>
+          <div><h3>Google Play Academy — Store Listing Certificate</h3><span class="cert-by">Google Play Academy · 2025</span></div>
         </article>
         <article class="cert">
           <div class="cert-ico">◆</div>
-          <h3>Software Engineer</h3>
-          <span class="cert-by">HackerRank · 2025</span>
+          <div><h3>Software Engineer</h3><span class="cert-by">HackerRank · 2025</span></div>
         </article>
         <article class="cert">
           <div class="cert-ico">◆</div>
-          <h3>Python (Basic)</h3>
-          <span class="cert-by">HackerRank · 2025</span>
+          <div><h3>Python (Basic)</h3><span class="cert-by">HackerRank · 2025</span></div>
         </article>
         <article class="cert">
           <div class="cert-ico">◆</div>
-          <h3>JavaScript (Basic &amp; Intermediate)</h3>
-          <span class="cert-by">HackerRank · 2025</span>
+          <div><h3>JavaScript (Basic &amp; Intermediate)</h3><span class="cert-by">HackerRank · 2025</span></div>
         </article>
         <article class="cert">
           <div class="cert-ico">◆</div>
-          <h3>SQL (Intermediate)</h3>
-          <span class="cert-by">HackerRank · 2025</span>
+          <div><h3>SQL (Intermediate)</h3><span class="cert-by">HackerRank · 2025</span></div>
         </article>
         <article class="cert">
           <div class="cert-ico">◆</div>
-          <h3>REST API (Intermediate)</h3>
-          <span class="cert-by">HackerRank · 2025</span>
+          <div><h3>REST API (Intermediate)</h3><span class="cert-by">HackerRank · 2025</span></div>
         </article>
         <article class="cert">
           <div class="cert-ico">◆</div>
-          <h3>Problem Solving (Basic &amp; Intermediate)</h3>
-          <span class="cert-by">HackerRank · 2025</span>
+          <div><h3>Problem Solving (Basic &amp; Intermediate)</h3><span class="cert-by">HackerRank · 2025</span></div>
         </article>
         <article class="cert">
           <div class="cert-ico">◆</div>
-          <h3>SEO</h3>
-          <span class="cert-by">bcc.gov.bd · 2015</span>
+          <div><h3>SEO</h3><span class="cert-by">bcc.gov.bd · 2015</span></div>
         </article>
       </div>
     </section>
 
     <!-- ================= PROJECTS ================= -->
     <section id="projects" class="section">
-      <h2 class="section-title">Selected Work</h2>
-      <p class="section-sub">Real products, shipped — across AI, mobile, web and autonomous systems.</p>
+      <div class="section-head">
+        <div>
+          <p class="kicker">Case studies</p>
+          <h2 class="section-title">Real products, shipped</h2>
+          <p class="section-sub">Across AI, mobile, web and autonomous systems.</p>
+        </div>
+      </div>
       <div class="projects">
 
         <article class="project featured">
@@ -483,8 +721,12 @@
 
     <!-- ================= JOURNEY ================= -->
     <section id="journey" class="section">
-      <h2 class="section-title">Journey</h2>
-      <p class="section-sub">A quick line through my path.</p>
+      <div class="section-head">
+        <div>
+          <p class="kicker">Journey</p>
+          <h2 class="section-title">A quick line through my path</h2>
+        </div>
+      </div>
       <ol class="timeline">
         <li>
           <span class="tl-dot"></span>
@@ -523,8 +765,13 @@
 
     <!-- ================= WRITING ================= -->
     <section id="writing" class="section">
-      <h2 class="section-title">Writing</h2>
-      <p class="section-sub">Notes on building and shipping AI products — engineering, not hype.</p>
+      <div class="section-head">
+        <div>
+          <p class="kicker">Writing</p>
+          <h2 class="section-title">Notes from the build</h2>
+          <p class="section-sub">Engineering, not hype — how these products actually get made.</p>
+        </div>
+      </div>
       <div class="blog-grid">
         <a class="blog-card" href="blog/shipping-ai-mobile-apps-end-to-end.html">
           <span class="blog-date">Engineering</span>
@@ -556,8 +803,13 @@
 
     <!-- ================= FIVERR ================= -->
     <section id="fiverr" class="section">
-      <h2 class="section-title">Hire me on Fiverr</h2>
-      <p class="section-sub">Services you can order today — from app builds and AI integration to store publishing. Fixed packages, clear delivery.</p>
+      <div class="section-head">
+        <div>
+          <p class="kicker">Services</p>
+          <h2 class="section-title">Hire me on Fiverr</h2>
+          <p class="section-sub">Fixed packages, clear delivery — from app builds and AI integration to store publishing.</p>
+        </div>
+      </div>
 
       <div class="fiverr-card">
         <div class="fiverr-main">
@@ -686,7 +938,8 @@
     <!-- ================= CONTACT ================= -->
     <section id="contact" class="section">
       <div class="contact-card">
-        <div>
+        <div class="contact-copy">
+          <p class="kicker">Contact</p>
           <h2>Let's build something.</h2>
           <p>Open to AI engineering work, mobile and web projects, research collaborations and opportunities abroad.</p>
         </div>
@@ -702,9 +955,36 @@
   </main>
 
   <footer class="footer">
-    <p>© <span id="year"></span> Zubair Alam. All rights reserved.</p>
-    <p class="built">AI Software Engineer · <a href="https://codexzubair.com">codexzubair.com</a></p>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a class="brand" href="#top">
+          <span class="brand-mark">ZA</span>
+          <span class="brand-text">Zubair Alam</span>
+        </a>
+        <p>AI Software Engineer · building and shipping AI products from Bangladesh to the world.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#apps">Shipped apps</a>
+        <a href="#projects">Case studies</a>
+        <a href="#process">How I work</a>
+        <a href="blog/">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Elsewhere</h4>
+        <a href="https://github.com/codex-zubair" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/codex-zubair/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.fiverr.com/s/L3dYVZY" target="_blank" rel="noopener">Fiverr</a>
+        <a href="https://ryzadev.com" target="_blank" rel="noopener">Ryza Dev</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Zubair Alam. All rights reserved.</p>
+      <p class="built">AI Software Engineer · <a href="https://codexzubair.com">codexzubair.com</a></p>
+    </div>
   </footer>
+
+  <button class="to-top" aria-label="Back to top" hidden>↑</button>
 
   <script src="main.js"></script>
 </body>

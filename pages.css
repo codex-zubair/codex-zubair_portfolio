@@ -84,3 +84,24 @@
   .spec-grid { grid-template-columns: 1fr; }
   .article-body { font-size: 0.98rem; }
 }
+
+/* Screenshot gallery (case studies) */
+.shot-gallery {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 34px 0 30px;
+}
+.shot-gallery img {
+  width: 100%; height: auto; border-radius: 18px; display: block;
+  border: 1px solid var(--card-brd); background: #070b14;
+  box-shadow: 0 26px 60px -34px rgba(0,0,0,.95);
+  transition: transform .3s var(--ease), border-color .3s;
+}
+.shot-gallery img:hover { transform: translateY(-6px); border-color: rgba(79,140,255,.45); }
+@media (max-width: 900px) {
+  .shot-gallery { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Tags inside article bodies must not inherit prose list styles */
+.article-body ul.tags {
+  display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; list-style: none;
+}
+.article-body ul.tags li { color: var(--muted); font-size: 0.76rem; }

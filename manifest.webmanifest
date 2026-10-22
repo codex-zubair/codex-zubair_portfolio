@@ -1,0 +1,13 @@
+{
+  "name": "Zubair Alam — AI Software Engineer",
+  "short_name": "Zubair Alam",
+  "description": "AI Software Engineer and founder of Ryza Dev — building and shipping AI-powered mobile apps, web platforms and autonomous systems.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#05070d",
+  "theme_color": "#05070d",
+  "icons": [
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
