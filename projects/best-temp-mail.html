@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Best Temp Mail — Case Study | Zubair Alam</title>
+  <meta name="description" content="A disposable-email platform end to end: a real-time Android inbox app, a Next.js website with QR inbox sync, and a public developer API with SDKs, an MCP server and webhooks." />
+  <meta name="keywords" content="temporary email, disposable email, temp mail, Android, Next.js, API, WebSocket, Firebase, AdMob, Zubair Alam" />
+  <meta name="author" content="Zubair Alam" />
+  <meta property="og:title" content="Best Temp Mail — Case Study" />
+  <meta property="og:description" content="Disposable email done properly: real-time Android inbox, QR sync to the web, and a developer API built for QA automation." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://codexzubair.com/projects/best-temp-mail.html" />
+  <link rel="canonical" href="https://codexzubair.com/projects/best-temp-mail.html" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../assets/icon-512.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../pages.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Best Temp Mail",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Android, Web",
+    "url": "https://best-tempmail.com",
+    "author": { "@type": "Person", "name": "Zubair Alam" },
+    "description": "Free disposable email platform: real-time Android inbox app, website with QR inbox sync, and a developer API for QA automation."
+  }
+  </script>
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true">
+    <span class="aurora-a"></span>
+    <span class="aurora-b"></span>
+    <span class="aurora-c"></span>
+  </div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="../index.html"><span class="brand-mark">ZA</span><span class="brand-text">Zubair Alam</span></a>
+    <nav class="nav-links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#apps">Apps</a>
+      <a href="../index.html#projects">Work</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#process">Process</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+    <a class="nav-cta" href="../index.html#contact">Let's talk <span aria-hidden="true">→</span></a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  </header>
+
+  <main class="page-wrap">
+    <nav class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../index.html#projects">Work</a><span>/</span> Best Temp Mail</nav>
+
+    <div class="article-head">
+      <span class="kicker">Product · Privacy · Full-Stack</span>
+      <h1>Best Temp Mail</h1>
+      <p class="article-meta"><span>Disposable email platform</span><span>·</span><span>Android app · Web · API</span></p>
+    </div>
+
+    <div class="spec-grid">
+      <div class="spec"><span>Role</span><strong>Full-stack engineering, publishing</strong></div>
+      <div class="spec"><span>Stack</span><strong>Kotlin · Next.js · TypeScript · WebSocket</strong></div>
+      <div class="spec"><span>Surfaces</span><strong>Android app · Website · Public API</strong></div>
+      <div class="spec"><span>Integrations</span><strong>Firebase · AdMob · WebSocket push</strong></div>
+    </div>
+
+    <div class="article-body">
+      <h2>Overview</h2>
+      <p>
+        <strong>Best Temp Mail</strong> (<a href="https://best-tempmail.com" target="_blank" rel="noopener">best-tempmail.com</a>)
+        is a disposable email service built around one idea: verification mail should arrive in seconds and disappear
+        afterwards. It ships as three connected products — an Android app, a website, and a developer API — all
+        sharing one mail infrastructure.
+      </p>
+
+      <h2>The problem</h2>
+      <p>
+        Most temp-mail services are a web form over a shared, slow inbox. Codes arrive late or not at all because
+        deliverability is an afterthought, and there is no way to carry an inbox from the phone to the desktop.
+        Developers who need throwaway addresses for test suites are left screen-scraping an ad-covered page.
+        The product had to fix all three: real delivery, continuity across devices, and a proper API.
+      </p>
+
+      <h2>Approach</h2>
+      <ul>
+        <li>Made <strong>deliverability a first-class concern</strong> — correct SPF/DKIM/DMARC on rotated sender domains, so OTP mail lands in the inbox rather than a spam folder.</li>
+        <li>Pushed mail to the client over <strong>WebSocket</strong> instead of polling, so messages appear the moment they are received; Firebase Cloud Messaging covers the app-in-background case.</li>
+        <li>Built <strong>QR inbox sync</strong>: scan from the app and the same temporary inbox opens on the website, with no account and no login.</li>
+        <li>Supported up to <strong>three active mailboxes</strong>, custom local parts, domain selection and swipe-to-delete, with automatic expiry that permanently removes data.</li>
+        <li>Implemented a real <strong>Android Autofill service</strong> using the official Autofill Framework, off by default and scoped only to offering the temp address.</li>
+        <li>Shipped a <strong>public API</strong> — inbox creation, message read, long-poll <code>/wait</code>, OTP and action-link extraction, webhooks with HMAC signing, plus Node and Python SDKs and an MCP server for AI assistants.</li>
+        <li>Handled the <strong>Play compliance surface</strong> properly: ads disclosure, data-safety form, privacy policy and permissions all matching what the app actually does.</li>
+      </ul>
+
+      <h2>Result</h2>
+      <p>
+        A live, multi-surface product: an Android app with instant OTP delivery and push notifications, a website
+        offering the same inbox in the browser, and an API adopted for automated signup and verification-code testing
+        in CI. The service is listed across launch directories and runs entirely without user accounts — anonymity is
+        the architecture, not a toggle.
+      </p>
+
+      <h2>Stack</h2>
+      <ul class="tags"><li>Kotlin</li><li>Next.js</li><li>TypeScript</li><li>WebSocket</li><li>Firebase</li><li>AdMob</li><li>REST API</li><li>Android Autofill</li></ul>
+
+      <h2>Live</h2>
+      <p>
+        <a href="https://best-tempmail.com" target="_blank" rel="noopener">best-tempmail.com</a> ·
+        <a href="https://best-tempmail.com/api" target="_blank" rel="noopener">Developer API</a> ·
+        <a href="https://best-tempmail.com/en/privacy" target="_blank" rel="noopener">Privacy policy</a>
+      </p>
+    </div>
+
+    <figure class="shot-gallery">
+      <img src="../assets/shots/besttempmail-mailboxes.jpg" alt="Best Temp Mail showing three active temporary mailboxes" width="540" height="960" loading="lazy" />
+      <img src="../assets/shots/besttempmail-custom.jpg" alt="Creating a custom temporary email address with a chosen name and domain" width="540" height="960" loading="lazy" />
+      <img src="../assets/shots/besttempmail-delivery.jpg" alt="Verification emails and OTP codes arriving from services like Netflix and Amazon" width="540" height="960" loading="lazy" />
+      <img src="../assets/shots/besttempmail-dark.jpg" alt="Best Temp Mail dark mode inbox" width="540" height="960" loading="lazy" />
+    </figure>
+
+    <div class="callout">
+      <p><strong>Shipped and live.</strong> The website and developer API are live at best-tempmail.com, with the
+      Android build signed and delivered to Google Play — OTP mail arrives in seconds over WebSocket instead of a
+      polling loop.</p>
+    </div>
+
+    <div class="article-cta">
+      <h3>Need a product like this built?</h3>
+      <p>Mobile app, web platform and a documented API — one codebase, one launch.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://www.fiverr.com/s/L3dYVZY" target="_blank" rel="noopener">Hire me on Fiverr</a>
+        <a class="btn btn-ghost" href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a class="brand" href="../index.html">
+          <span class="brand-mark">ZA</span>
+          <span class="brand-text">Zubair Alam</span>
+        </a>
+        <p>AI Software Engineer · building and shipping AI products from Bangladesh to the world.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="../index.html#apps">Shipped apps</a>
+        <a href="../index.html#projects">Case studies</a>
+        <a href="../index.html#process">How I work</a>
+        <a href="../blog/">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Elsewhere</h4>
+        <a href="https://github.com/codex-zubair" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/codex-zubair/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.fiverr.com/s/L3dYVZY" target="_blank" rel="noopener">Fiverr</a>
+        <a href="https://ryzadev.com" target="_blank" rel="noopener">Ryza Dev</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Zubair Alam. All rights reserved.</p>
+      <p class="built">AI Software Engineer · <a href="https://codexzubair.com">codexzubair.com</a></p>
+    </div>
+  </footer>
+  <button class="to-top" aria-label="Back to top" hidden>↑</button>
+
+  <script src="../main.js"></script>
+</body>
+</html>
